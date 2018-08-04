@@ -11,11 +11,11 @@ Coordinates [x,y] of holes corresponds to the center.
 
 You can render the box as a 3D image
 
-<img src="box.png">
+<img src="docs/box.png">
 
 And you can also export easily as a SVG of DXF file for laser cutting.
 
-<img src="box.svg">
+<img src="docs/box.svg">
 
 ## How to use it
 
@@ -114,4 +114,4 @@ In order to fix the PCB we have the following sequence:
 - bottom of the case
 - M3 screw (we take 40 mm screws that we cut if needed)
 
-<img src="nylon.jpg">
+<img src="docs/nylon.jpg">
