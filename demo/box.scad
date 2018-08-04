@@ -1,6 +1,6 @@
 $fn=40;
 
-use <pcbbox/box.scad>;
+use <../pcbbox/box.scad>;
 
 box(
     width=100,
@@ -13,6 +13,7 @@ box(
     labels=["Top","Bottom","Left","Right","Front","Back"],
     3d=true,
     space=2,
+    active=[1,1,1,1,1,1],  // side that should be displayed
     holes=[ // relative to the inside of the box
         [
             [20,20,2], // circular hole on the Bottom

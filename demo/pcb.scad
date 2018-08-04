@@ -1,43 +1,6 @@
-## It's in the box
-
-#### An OpenSCAD project to wrap your PCB in a box
-
-Often we need to create custom boxes to wrap a printed circuit board (PCB) and this
-may be time consuming.
-
-In this project based on couple of parameters you can quickly and efficiently create DXF files that after laser cutting will provide the different elements to create the box. You may cut any number of holes (round or rectangle) on all the faces of the box and the coordinates will always be relative to the (0,0) that is the bottom left of the PCB.
-
-Coordinates [x,y] of holes corresponds to the center.
-
-You can render the box as a 3D image
-
-<img src="box.png">
-
-And you can also export easily as a SVG of DXF file for laser cutting.
-
-<img src="box.svg">
-
-## How to use it
-
-Download OpenSCAD and open the file 'testBox.scad'.
-
-The comments in the file should be clear enough to use this code.
-
-## Exporting as DXF
-
-You should change the following parameters before generating DXF:
-
-- showLabels = false
-- 3d = false
-
-You may then render the image and export as DXF.
-
-## Code example
-
-```js
 $fn=40;
 
-use <pcbbox/pcb.scad>;
+use <../pcbbox/pcb.scad>;
 
 pcb(
     length=100,         // length of the PCB
@@ -96,22 +59,7 @@ pcb(
     ],
     showLabels=true,    //should we show the labels
     labelsSize=10,      // size of the labels
-    3d=true             // 3d rendering or just 2d ?
+    3d=false,            // 3d rendering or just 2d ?,
+    show="all"          // used for 3D printing. Possible values:
+                        // all (default), top, bottom, fulltop (5 faces), fullbottom (5 faces)
 );
-```
-
-## Screwing the PCB
-
-We recently often use black nylon M3 screw, standoff and spacer.
-
-In order to fix the PCB we have the following sequence:
-
-- M3 screw
-- top of the case
-- column standoff female spacer
-- PCB
-- column standoff male spacer
-- bottom of the case
-- M3 screw (we take 40 mm screws that we cut if needed)
-
-<img src="nylon.jpg">

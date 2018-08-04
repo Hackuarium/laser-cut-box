@@ -23,8 +23,16 @@ module pcb(
     labelsSize=10,
     extend=0,
     showLabels=false,
-    3d=false
+    3d=false,
+    show="all"
 ) {
+
+    active=
+        (show=="top") ? [1,0,0,0,0,0] :
+        (show=="bottom") ? [0,1,0,0,0,0] :
+        (show=="fulltop") ? [1,0,1,1,1,1] :
+        (show=="fullbottom") ? [0,1,1,1,1,1] :
+        [1,1,1,1,1,1];
 
     box(
         width=length+padding*2+thickness*2,
@@ -35,6 +43,7 @@ module pcb(
         labelsSize=labelsSize, 
         showLabels=showLabels,
         labels=["Top","Bottom","Left","Right","Front","Back"],
+        active=active,
         3d=3d,
         space=2,
         extends=[extend,extend,0,0,0,0],

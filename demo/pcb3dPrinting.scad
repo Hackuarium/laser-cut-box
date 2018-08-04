@@ -1,6 +1,6 @@
 $fn=40;
 
-use <pcbbox/pcb.scad>;
+use <../pcbbox/pcb.scad>;
 
 pcb(
     length=100,         // length of the PCB
@@ -9,8 +9,8 @@ pcb(
     thickness=3,        // thickness of the material to create the box
     pcbThickness=1.6,   // thickness of the box
     topToTop=20,        // distance from the top of the PCB to the external top of the box
-    bottomToBottom=40,  // distance from the bottom of the PCB to the external bottom of the box
-    extend=10,          // should top and bottom 'extend' in order to assemble the box without glue
+    bottomToBottom=15,  // distance from the bottom of the PCB to the external bottom of the box
+    extend=0,           // should top and bottom 'extend' in order to assemble the box without glue
     screws=[            // position of holes to fix the PCB
         [5,5],
         [10,70],
@@ -30,34 +30,29 @@ pcb(
         [40,5,10,10]
     ],
     frontHolesB=[       // holes in front of the box, under the PCB
-        [20,2.5,5],
-        [40,5,10,10]
     ],
     backHoles=[         // holes in the back of the box, over the PCB
         [20,2.5,5],
         [40,5,10,10]
     ],
     backHolesB=[        // holes in front of the box, under the PCB
-        [20,2.5,5],
-        [40,5,10,10]
     ],
     leftHoles=[         // holes on the left of the box, over the PCB
         [20,2.5,5],
         [40,5,10,10]
     ],
     leftHolesB=[        // holes on the left of the box, under the PCB
-        [20,2.5,5],
-        [40,5,10,10]
     ],
     rightHoles=[        // holes on the right of the box, over the PCB
         [20,2.5,5],
         [40,5,10,10]
     ],
     rightHolesB=[       // holes on the right of the box, under the PCB
-        [20,2.5,5],
-        [40,5,10,10]
     ],
-    showLabels=true,    //should we show the labels
+    showLabels=false,    //should we show the labels
     labelsSize=10,      // size of the labels
-    3d=true             // 3d rendering or just 2d ?
+    3d=true,            // 3d rendering or just 2d ?,
+    show="fulltop"      // used for 3D printing. Possible values:
+                        // all (default), top, bottom, fulltop (5 faces), fullbottom (5 faces)
+                        // for 3D printing you could generate once with fulltop and then bottom
 );

@@ -2,7 +2,21 @@
 
 use <side.scad>;
 
-module box() {
+module box(
+    width=5,
+    depth=5,
+    height=5,
+    thickness=1,
+    fingerWidth=undef,
+    labelsSize=10, 
+    showLabels=true,
+    labels=["Top","Bottom","Left","Right","Front","Back"],
+    active=[1,1,1,1,1,1],
+    3d=true,
+    space=2,
+    extends=[0,0,0,0,0,0],
+    holes=[[],[],[],[],[],[]]
+    ) {
     fingerWidth = (fingerWidth==undef) ? thickness*2 : fingerWidth;
     
     assemble3d=[
@@ -54,6 +68,7 @@ module box() {
     assemble=(3d) ? assemble3d : assemble2d;
     
     // top
+    if (active[0])
     translate(assemble[0][0])
         rotate(assemble[0][1])
             side(width, depth, thickness, fingerWidth, male=[1,1,1,1],
@@ -61,6 +76,7 @@ module box() {
             holes=holes[0], 3d=3d, extend=extends[0]);
 
     // bottom
+    if (active[1])
     translate(assemble[1][0])
         rotate(assemble[1][1])
             side(width, depth, thickness, fingerWidth, male=[1,1,1,1],
@@ -68,6 +84,7 @@ module box() {
             holes=holes[1], 3d=3d, extend=extends[1]);
     
     // left
+    if (active[2])
     translate(assemble[2][0])
         rotate(assemble[2][1])
             side(height, depth, thickness, fingerWidth, male=[0,0,0,0],
@@ -75,6 +92,7 @@ module box() {
             holes=holes[2], 3d=3d, extend=extends[2]);
 
     // right
+    if (active[3])
     translate(assemble[3][0])
         rotate(assemble[3][1])
             side(height, depth, thickness, fingerWidth, male=[0,0,0,0],
@@ -82,6 +100,7 @@ module box() {
             holes=holes[3], 3d=3d, extend=extends[3]);
 
     // front
+    if (active[4])
     translate(assemble[4][0])
         rotate(assemble[4][1])
             side(width, height, thickness, fingerWidth, male=[0,1,0,1],
@@ -89,6 +108,7 @@ module box() {
             holes=holes[4], 3d=3d, extend=extends[4]);
     
     // back
+    if (active[5])
     translate(assemble[5][0])
         rotate(assemble[5][1])
             side(width, height, thickness, fingerWidth, male=[0,1,0,1],
