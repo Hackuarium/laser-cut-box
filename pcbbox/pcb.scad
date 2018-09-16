@@ -24,26 +24,22 @@ module pcb(
     extend=0,
     showLabels=false,
     3d=false,
-    show="all"
+    fingerWidth=undef,
+    specialFingers=[],
+    active=[1,1,1,1,1,1]
 ) {
-
-    active=
-        (show=="top") ? [1,0,0,0,0,0] :
-        (show=="bottom") ? [0,1,0,0,0,0] :
-        (show=="fulltop") ? [1,0,1,1,1,1] :
-        (show=="fullbottom") ? [0,1,1,1,1,1] :
-        [1,1,1,1,1,1];
 
     box(
         width=length+padding*2+thickness*2,
         depth=width+padding*2+thickness*2,
         height=pcbThickness+topToTop+bottomToBottom,
         thickness=thickness,
-        fingerWidth=undef,
+        fingerWidth=fingerWidth,
         labelsSize=labelsSize, 
         showLabels=showLabels,
         labels=["Top","Bottom","Left","Right","Front","Back"],
         active=active,
+        specialFingers=specialFingers,
         3d=3d,
         space=2,
         extends=[extend,extend,0,0,0,0],
@@ -98,8 +94,6 @@ module pcb(
             )
         ]
     );
-
-
 }
 
 

@@ -49,42 +49,42 @@ module box(
     assemble2d = (depth > (height * 2)) ?
         [
             [
-                [width/2 + extends[0]/2, depth*3/2+space + extends[0] + extends[1]/2, 0] // top
+                [width/2 + extends[0], depth*3/2+space + extends[0]*2 + extends[1], 0] // top
             ],
             [
-                [width/2 + extends[0]/2, depth/2 + extends[0]/2, 0] // bottom
+                [width/2 + extends[0], depth/2 + extends[0], 0] // bottom
             ],
             [
-                [width + depth/2 + extends[0] + space, height*5/2 + space*2, 0] // left
+                [width + depth/2 + extends[0]*2 + space, height*5/2 + space*2, 0] // left
             ],
             [
-                [width + depth/2 + extends[0] + space, height*7/2 + space*3, 0] // right
+                [width + depth/2 + extends[0]*2 + space, height*7/2 + space*3, 0] // right
             ],
             [
-                [width*3/2 + extends[0] + space, height/2, 0] // front
+                [width*3/2 + extends[0]*2 + space, height/2, 0] // front
             ],
             [
-                [width*3/2 + extends[0] + space, height*3/2 + space, 0] // back
+                [width*3/2 + extends[0]*2 + space, height*3/2 + space, 0] // back
             ]
         ] : 
         [
             [
-                [width/2 + extends[0]/2, depth*3/2+space + extends[0] + extends[1]/2, 0] // top
+                [width/2 + extends[0], depth*3/2+space + extends[0]*2 + extends[1], 0] // top
             ],
             [
-                [width/2 + extends[0]/2, depth/2 + extends[0]/2, 0] // bottom
+                [width/2 + extends[0], depth/2 + extends[0], 0] // bottom
             ],
             [
-                [width * 2 + depth / 2 + extends[0] + space * 2, height/2, 0] // left
+                [width * 2 + depth / 2 + extends[0]*2 + space * 2, height/2, 0] // left
             ],
             [
-                [width * 2 + depth / 2 + extends[0] + space * 2, height*3/2 + space, 0] // right
+                [width * 2 + depth / 2 + extends[0]*2 + space * 2, height*3/2 + space, 0] // right
             ],
             [
-                [width*3/2 + extends[0] + space, height/2, 0] // front
+                [width*3/2 + extends[0]*2 + space, height/2, 0] // front
             ],
             [
-                [width*3/2 + extends[0] + space, height*3/2 + space, 0] // back
+                [width*3/2 + extends[0]*2 + space, height*3/2 + space, 0] // back
             ]
         ];
 
@@ -97,51 +97,98 @@ module box(
     if (active[0])
     translate(assemble[0][0])
         rotate(assemble[0][1])
-            side(width, depth, thickness, fingerWidth, male=[1,1,1,1],
-            name="top", sideColor="blue", labelsSize=labelsSize, showLabels=showLabels,
-            holes=holes[0], 3d=3d, extend=extends[0]);
+            side(
+                width, depth, thickness, fingerWidth,
+                name="top", sideColor="blue", labelsSize=labelsSize, showLabels=showLabels,
+                holes=holes[0], 3d=3d, extend=extends[0],
+                male=[
+                    specialFingers[0] ? specialFingers[0] : 1,
+                    specialFingers[0] ? specialFingers[0] : 1,
+                    specialFingers[0] ? specialFingers[0] : 1,
+                    specialFingers[0] ? specialFingers[0] : 1,
+                ]
+            );
 
     // bottom
     if (active[1])
     translate(assemble[1][0])
         rotate(assemble[1][1])
-            side(width, depth, thickness, fingerWidth, male=[1,1,1,1],
-            name="bottom", sideColor="green", labelsSize=labelsSize, showLabels=showLabels,
-            holes=holes[1], 3d=3d, extend=extends[1]);
+            side(
+                width, depth, thickness, fingerWidth,
+                name="bottom", sideColor="green", labelsSize=labelsSize, showLabels=showLabels,
+                holes=holes[1], 3d=3d, extend=extends[1],
+                male=[
+                    specialFingers[1] ? specialFingers[1] : 1,
+                    specialFingers[1] ? specialFingers[1] : 1,
+                    specialFingers[1] ? specialFingers[1] : 1,
+                    specialFingers[1] ? specialFingers[1] : 1,
+                ]
+            );
     
     // left
     if (active[2])
     translate(assemble[2][0])
         rotate(assemble[2][1])
-            side(depth, height, thickness, fingerWidth, male=[0,0,0,0],
-            name="left", sideColor="magenta", labelsSize=labelsSize, showLabels=showLabels,
-            holes=holes[2], 3d=3d, extend=extends[2], textRotation=180);
+            side(
+                depth, height, thickness, fingerWidth,
+                name="left", sideColor="magenta", labelsSize=labelsSize, showLabels=showLabels,
+                holes=holes[2], 3d=3d, extend=extends[2], textRotation=180,
+                male=[
+                    specialFingers[0] ? invertSpecialFinger(specialFingers[0]) : 0,
+                    0,
+                    specialFingers[1] ? invertSpecialFinger(specialFingers[1]) : 0,
+                    0
+                ]
+            );
 
     // right
     if (active[3])
     translate(assemble[3][0])
         rotate(assemble[3][1])
-            side(depth, height, thickness, fingerWidth, male=[0,0,0,0],
-            name="right", sideColor="cyan", labelsSize=labelsSize, showLabels=showLabels,
-            holes=holes[3], 3d=3d, extend=extends[3]);
+            side(
+                depth, height, thickness, fingerWidth,
+                name="right", sideColor="cyan", labelsSize=labelsSize, showLabels=showLabels,
+                holes=holes[3], 3d=3d, extend=extends[3],
+                male=[
+                    specialFingers[1] ? invertSpecialFinger(specialFingers[1]) : 0,
+                    0,
+                    specialFingers[0] ? invertSpecialFinger(specialFingers[0]) : 0,
+                    0
+                ]
+            );
 
     // front
     if (active[4])
     translate(assemble[4][0])
         rotate(assemble[4][1])
-            side(width, height, thickness, fingerWidth, male=[0,1,0,1],
-            name="front", sideColor="orange", labelsSize=labelsSize, showLabels=showLabels,
-            holes=holes[4], 3d=3d, extend=extends[4]);
+            side(
+                width, height, thickness, fingerWidth,
+                name="front", sideColor="orange", labelsSize=labelsSize, showLabels=showLabels,
+                holes=holes[4], 3d=3d, extend=extends[4],
+                male=[
+                    specialFingers[1] ? invertSpecialFinger(specialFingers[1]) : 0,
+                    1,
+                    specialFingers[0] ? invertSpecialFinger(specialFingers[0]) : 0,
+                    1
+                ]
+            );
     
     // back
     if (active[5])
     translate(assemble[5][0])
         rotate(assemble[5][1])
-            side(width, height, thickness, fingerWidth, male=[0,1,0,1],
-            name="back", sideColor="indigo", labelsSize=labelsSize, showLabels=showLabels,
-            holes=holes[5], 3d=3d, extend=extends[5], textRotation=180);
-            
-
+            side(
+                width, height, thickness, fingerWidth,  
+                name="back", sideColor="indigo", labelsSize=labelsSize, showLabels=showLabels,
+                holes=holes[5], 3d=3d, extend=extends[5], textRotation=180,
+                male=[
+                    specialFingers[0] ? invertSpecialFinger(specialFingers[0]) : 0,
+                    1,
+                    specialFingers[1] ? invertSpecialFinger(specialFingers[1]) : 0,
+                    1
+                ]
+            );
 };
 
 
+function invertSpecialFinger(value) = (value==1) ? 0 : (value==0) ? 1 : (value==2) ? 3 : (value==3) ? 2 : undef;

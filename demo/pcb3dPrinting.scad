@@ -51,8 +51,8 @@ pcb(
     ],
     showLabels=false,    //should we show the labels
     labelsSize=10,      // size of the labels
-    3d=true,            // 3d rendering or just 2d ?,
-    show="fulltop"      // used for 3D printing. Possible values:
+    3d=false,            // 3d rendering or just 2d ?,
+    show="all"      // used for 3D printing. Possible values:
                         // all (default), top, bottom, fulltop (5 faces), fullbottom (5 faces)
                         // for 3D printing you could generate once with fulltop and then bottom
 );

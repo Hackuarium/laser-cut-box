@@ -14,5 +14,4 @@ module customHole(kind, parameters) {
         );
         echo("DONE");
     }
-   
 }

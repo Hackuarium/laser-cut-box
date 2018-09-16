@@ -5,7 +5,7 @@ module side(
     height,
     thickness,
     fingerWidth,
-    male=[0,0,0,0],
+    male=[0,0,0,0],  // 0 female, 1 male, 2 full female, 3 full male
     name="",
     sideColor="yellow",
     labelsSize=10,
@@ -27,35 +27,20 @@ module side(
        conditionalExtrude(thickness=thickness, 3d=3d) {
             difference() {
                 // we create the side
-                    translate([-extend/2, -extend/2])
-                        square([width+extend, height+extend]);
+                    translate([-extend, -extend])
+                        square([width+extend*2, height+extend*2]);
 
-                    if (male[0]==0) {
-                        fingers(width, fingerWidth, thickness);
-                    } else {
-                        invertedFingers(width, fingerWidth, thickness);
-                    }
+                    translate([0, 0, 0]) rotate([0,0,0])
+                        anyFingers(width, fingerWidth, thickness, male[0]);
                     
                     translate([thickness, 0, 0]) rotate([0,0,90])
-                        if (male[1]==0) {
-                            fingers(height, fingerWidth, thickness);
-                        } else {
-                            invertedFingers(height, fingerWidth, thickness);
-                        }
+                        anyFingers(height, fingerWidth, thickness, male[1]);
                     
                     translate([0, height-thickness, 0])
-                        if (male[2]==0) {
-                            fingers(width, fingerWidth, thickness);
-                        } else {
-                            invertedFingers(width, fingerWidth, thickness);
-                        }
+                        anyFingers(width, fingerWidth, thickness, male[2]);
                     
                     translate([width, 0, 0]) rotate([0,0,90])
-                        if (male[3]==0) {
-                            fingers(height, fingerWidth, thickness);
-                        } else {
-                            invertedFingers(height, fingerWidth, thickness);
-                        }
+                        anyFingers(height, fingerWidth, thickness, male[3]);
                     
                     for (hole = holes) {
                         translate([hole[0] + thickness, hole[1] + thickness]) 
@@ -72,7 +57,18 @@ module side(
                     
                 }
        } 
+}
 
+module anyFingers(length, fingerWidth, thickness, kind) {
+    if (kind==0) {
+        fingers(length, fingerWidth, thickness);
+    } else if (kind==1) {
+        invertedFingers(length, fingerWidth, thickness);
+    } else if (kind==2) {
+        square( [length, thickness] );
+    } else if (kind==3) {
+
+    }
 }
 
 module conditionalExtrude(thickness, 3d) {

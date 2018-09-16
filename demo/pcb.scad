@@ -60,6 +60,10 @@ pcb(
     showLabels=true,    //should we show the labels
     labelsSize=10,      // size of the labels
     3d=false,            // 3d rendering or just 2d ?,
-    show="all"          // used for 3D printing. Possible values:
+    show="all",          // used for 3D printing. Possible values:
                         // all (default), top, bottom, fulltop (5 faces), fullbottom (5 faces)
+    specialFingers=[undef,undef,undef,undef,undef,undef]
+                        // for a normal box you should leave the default. However what is currently
+                        // supported is to specify either on 'top' (first element of the array) or the
+                        // 'bottom' (second element in the array) that is is fully female (2) or male (3).
 );
