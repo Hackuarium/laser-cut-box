@@ -55,7 +55,6 @@ module pcb(
                 [for(screw = screws)
                     [screw.x+padding, screw.y+padding, screwDiameter]
                 ]
-                
             ),
             concat ( // bottom
                 [for(hole = bottomHoles)
@@ -67,18 +66,18 @@ module pcb(
             ),
             concat ( // left
                 [for(hole = leftHoles)
-                    concat([pcbThickness+bottomToBottom+hole.y-thickness, hole.x+padding],[for (i=[2:1:len(hole)-1]) hole[i]])
+                    concat([hole.x+padding, topToTop-hole.y-thickness],[for (i=[2:1:len(hole)-1]) hole[i]])
                 ],
                 [for(hole = leftHolesB)
-                    concat([bottomToBottom-hole.y-thickness, hole.x+padding],[for (i=[2:1:len(hole)-1]) hole[i]])
+                    concat([hole.x+padding, pcbThickness+topToTop+hole.y-thickness],[for (i=[2:1:len(hole)-1]) hole[i]])
                 ]
             ),
             concat ( // right
                 [for(hole = rightHoles)
-                    concat([topToTop-hole.y-thickness, hole.x+padding],[for (i=[2:1:len(hole)-1]) hole[i]])
+                    concat([hole.x+padding, pcbThickness+bottomToBottom+hole.y-thickness],[for (i=[2:1:len(hole)-1]) hole[i]])
                 ],
                 [for(hole = rightHolesB)
-                    concat([pcbThickness+topToTop+hole.y-thickness, hole.x+padding],[for (i=[2:1:len(hole)-1]) hole[i]])
+                    concat([hole.x+padding, bottomToBottom-hole.y-thickness],[for (i=[2:1:len(hole)-1]) hole[i]])
                 ]
             ),
             concat ( // front

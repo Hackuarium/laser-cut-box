@@ -12,10 +12,11 @@ module side(
     showLabels=false,
     holes=[],
     3d=false,
-    extend=0
+    extend=0,
+    textRotation=0,
 ) {
     if (showLabels) {
-        textRotation=(width<height) ? 90 : 0;
+        textRotation=((width<height) ? 90 : 0) + textRotation;
         color("red")
             translate([0,0,thickness])
                 rotate([0,0,textRotation])
