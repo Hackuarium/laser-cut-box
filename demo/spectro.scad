@@ -2,6 +2,9 @@ $fn=40;
 
 use <../pcbbox/pcb.scad>;
 
+3d=true;
+
+showLabels=true;
 
 cellInternal=12.6;
 cellWall=2;
@@ -9,11 +12,11 @@ cellFingerWidth=4;
 topToTop=12;
 bottomToBottom=20;
 
-3d=true;
+translation = (3d) ?
+    [(34.29+52.975)/2-cellInternal/2+cellWall,(22.225+2.54)/2-cellInternal/2+cellWall, 0] :
+    [-(cellInternal+2*cellWall)*3.5,0];
 
- translate([(34.29+52.975)/2-cellInternal/2+cellWall,(22.225+2.54)/2-cellInternal/2+cellWall, -1])
-
-// translate([-(cellInternal+2*cellWall)*3.5-10,0])
+translate(translation)
 pcb(
   length=cellInternal,
   width=cellInternal,
@@ -37,7 +40,7 @@ pcb(
     [cellInternal/2, 2.5, 5, 5]
   ],
   3d=3d,
-  active=[0,1,1,1,1,1],
+  active=[0,0,1,1,1,1],
   specialFingers=[undef,3] // specify the kind of finger that should be used
 );
 
@@ -67,6 +70,7 @@ pcb(
             cellWall, // thickness of wood
             cellFingerWidth
          ],
+         [13.4 + 71.6/2, 40.5 + 25.1/2, 71.6, 25.1],
          [85.05, 12.61, 8]
       
     ],
@@ -81,7 +85,7 @@ pcb(
        [43.18, 2.25, 8.4, 4.5]
     ],
     rightHolesB=[],
-    showLabels=true,    //should we show the labels
+    showLabels=showLabels,    //should we show the labels
     labelsSize=10,      // size of the labels
     3d=3d,            // 3d rendering or just 2d ?,
     show="all"          // used for 3D printing. Possible values:

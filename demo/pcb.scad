@@ -10,7 +10,7 @@ pcb(
     pcbThickness=1.6,   // thickness of the box
     topToTop=20,        // distance from the top of the PCB to the external top of the box
     bottomToBottom=40,  // distance from the bottom of the PCB to the external bottom of the box
-    extend=10,          // should top and bottom 'extend' in order to assemble the box without glue
+    extend=5,          // should top and bottom 'extend' in order to assemble the box without glue
     screws=[            // position of holes to fix the PCB
         [5,5],
         [10,70],
@@ -60,8 +60,7 @@ pcb(
     showLabels=true,    //should we show the labels
     labelsSize=10,      // size of the labels
     3d=false,            // 3d rendering or just 2d ?,
-    show="all",          // used for 3D printing. Possible values:
-                        // all (default), top, bottom, fulltop (5 faces), fullbottom (5 faces)
+    active=[1,1,1,1,1,1],  // which faces should be rendered
     specialFingers=[undef,undef,undef,undef,undef,undef]
                         // for a normal box you should leave the default. However what is currently
                         // supported is to specify either on 'top' (first element of the array) or the
