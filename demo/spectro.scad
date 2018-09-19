@@ -4,16 +4,17 @@ use <../pcbbox/pcb.scad>;
 
 3d=true;
 
-showLabels=true;
+showLabels=false;
 
 cellInternal=12.6;
-cellWall=2;
+cellWall=3.06; // currently same as thickness of material of the full box
 cellFingerWidth=4;
 topToTop=12;
 bottomToBottom=20;
+padding=1;
 
 translation = (3d) ?
-    [(34.29+52.975)/2-cellInternal/2+cellWall,(22.225+2.54)/2-cellInternal/2+cellWall, 0] :
+    [(34.29+52.975)/2+cellWall-padding-cellInternal/2,(22.225+2.54)/2+cellWall-padding-cellInternal/2, 0] :
     [-(cellInternal+2*cellWall)*3.5,0];
 
 translate(translation)
@@ -47,8 +48,8 @@ pcb(
 pcb(
     length=99.1,         // length of the PCB
     width=73.6,           // width of the PCB
-    padding=1,          // space around the pcb (between pcb and box)
-    thickness=3,        // thickness of the material to create the box
+    padding=padding,          // space around the pcb (between pcb and box)
+    thickness=cellWall,        // thickness of the material to create the box
     pcbThickness=1.6,   // thickness of the box
     topToTop=topToTop,        // distance from the top of the PCB to the external top of the box
     bottomToBottom=bottomToBottom,  // distance from the bottom of the PCB to the external bottom of the box
@@ -74,13 +75,6 @@ pcb(
          [85.05, 12.61, 8]
       
     ],
-    bottomHoles=[],
-    frontHoles=[],
-    frontHolesB=[],
-    backHoles=[],
-    backHolesB=[],
-    leftHoles=[],
-    leftHolesB=[],
     rightHoles=[        // holes on the right of the box, over the PCB
        [43.18, 2.25, 8.4, 4.5]
     ],
