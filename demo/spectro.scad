@@ -2,7 +2,7 @@ $fn=40;
 
 use <../pcbbox/pcb.scad>;
 
-3d=true;
+3d=false;
 
 showLabels=false;
 
@@ -38,7 +38,6 @@ pcb(
     [cellInternal/2, 2.5, 5, 5]
   ],
   frontHolesB=[
-    [cellInternal/2, 2.5, 5, 5]
   ],
   3d=3d,
   active=[0,0,1,1,1,1],
