@@ -5,6 +5,7 @@ module side(
     height,
     thickness,
     fingerWidth,
+    fingers, // it is possible to specify male / female fingers, usefull for puzzle
     male=[0,0,0,0],  // 0 female, 1 male, 2 full female, 3 full male
     name="",
     sideColor="yellow",
@@ -30,17 +31,17 @@ module side(
                     translate([-extend, -extend])
                         square([width+extend*2, height+extend*2]);
 
-                    translate([0, 0, 0]) rotate([0,0,0])
-                        anyFingers(width, fingerWidth, thickness, male[0]);
+                    translate([width, thickness, 0]) rotate([0,0,180])
+                        anyFingers(width, fingerWidth, thickness, male[0], fingers[0]);
                     
                     translate([thickness, 0, 0]) rotate([0,0,90])
-                        anyFingers(height, fingerWidth, thickness, male[1]);
+                        anyFingers(height, fingerWidth, thickness, male[1], fingers[1]);
                     
-                    translate([0, height-thickness, 0])
-                        anyFingers(width, fingerWidth, thickness, male[2]);
+                    color("red") translate([0, height-thickness, 0]) rotate([0,0,0])
+                        anyFingers(width, fingerWidth, thickness, male[2], fingers[2]);
                     
-                    translate([width, 0, 0]) rotate([0,0,90])
-                        anyFingers(height, fingerWidth, thickness, male[3]);
+                    translate([width-thickness, height, 0]) rotate([0,0,270])
+                        anyFingers(height, fingerWidth, thickness, male[3], fingers[3]);
                     
                     for (hole = holes) {
                         translate([hole[0] + thickness, hole[1] + thickness]) 
@@ -54,16 +55,26 @@ module side(
                             customHole(kind=hole[2], parameters=[ for (i=[3:1:len(hole)-1]) hole[i] ]);
                         }
                     }
-                    
                 }
        } 
 }
 
-module anyFingers(length, fingerWidth, thickness, kind) {
+module anyFingers(length, fingerWidth, thickness, kind, fingers) {
     if (kind==0) {
-        fingers(length, fingerWidth, thickness);
+        if (fingers) {
+            fingersSpecific(length, fingers, thickness);
+        } else {
+            fingersAuto(length, fingerWidth, thickness);
+        }
     } else if (kind==1) {
-        invertedFingers(length, fingerWidth, thickness);
+        difference() {
+            square([length, thickness]);
+                if (fingers) {
+                fingersSpecific(length, fingers, thickness);
+            } else {
+                fingersAuto(length, fingerWidth, thickness);
+            }
+        }
     } else if (kind==2) {
         square( [length, thickness] );
     } else if (kind==3) {
@@ -81,19 +92,23 @@ module conditionalExtrude(thickness, 3d) {
     
 }
 
-module invertedFingers(width, fingerWidth, thickness) {
-    color("red") difference() {
-        square([width, thickness]);
-        fingers(width, fingerWidth, thickness);
+
+module fingersSpecific(width, fingers, thickness) {
+    fingerWidth=width / len(fingers);
+    for (i= [0:1:len(fingers)-1]) {
+        if (fingers[i]) {
+            translate([i*fingerWidth,0,0])
+                square( [fingerWidth, thickness] );
+        }
     }
 }
 
-module fingers(width, fingerWidth, thickness) {
+
+module fingersAuto(width, fingerWidth, thickness) {
     fingerNumber=floor((width-2*thickness-fingerWidth)/(fingerWidth*2));
     fingerStart=(width-(fingerNumber*2-1)*fingerWidth)/2;
     for (i= [0:1:fingerNumber-1]) {
-        color("green")
-            translate([fingerStart+i*2*fingerWidth,0,0])
-                square( [fingerWidth, thickness] );
+        translate([fingerStart+i*2*fingerWidth,0,0])
+            square( [fingerWidth, thickness] );
     }
 }
