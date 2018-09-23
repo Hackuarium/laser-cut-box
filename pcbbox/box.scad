@@ -46,25 +46,27 @@ module box(
         ]
     ];
     
+    extendsX=max(extends[0], extends[1]);
+
     assemble2d = (depth > (height * 2)) ?
         [
             [
-                [width/2 + extends[0], depth*3/2+space + extends[0]*2 + extends[1], 0] // top
+                [width/2 + extendsX, depth*3/2+space + extends[0]*2 + extends[1], 0] // top
             ],
             [
-                [width/2 + extends[0], depth/2 + extends[0], 0] // bottom
+                [width/2 + extendsX, depth/2 + extends[0], 0] // bottom
             ],
             [
-                [width + depth/2 + extends[0]*2 + space, height*5/2 + space*2, 0] // left
+                [width + depth/2 + extendsX*2 + space, height*5/2 + space*2, 0] // left
             ],
             [
-                [width + depth/2 + extends[0]*2 + space, height*7/2 + space*3, 0] // right
+                [width + depth/2 + extendsX*2 + space, height*7/2 + space*3, 0] // right
             ],
             [
-                [width*3/2 + extends[0]*2 + space, height/2, 0] // front
+                [width*3/2 + extendsX*2 + space, height/2, 0] // front
             ],
             [
-                [width*3/2 + extends[0]*2 + space, height*3/2 + space, 0] // back
+                [width*3/2 + extendsX*2 + space, height*3/2 + space, 0] // back
             ]
         ] : 
         [
