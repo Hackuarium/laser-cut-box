@@ -6,15 +6,18 @@ use <../pcbbox/pcb.scad>;
 
 showLabels=false;
 
-cellInternal=12.6;
-cellWall=3.06; // currently same as thickness of material of the full box
-cellFingerWidth=4;
 topToTop=12;
 bottomToBottom=20;
 padding=1;
 
+cellInternal=12.6;
+cellWall=3.06; // currently same as thickness of material of the full box
+cellFingerWidth=4;
+cellX=(34.29+52.975)/2;
+cellY=(22.225+2.54)/2;
+
 translation = (3d) ?
-    [(34.29+52.975)/2+cellWall-padding-cellInternal/2,(22.225+2.54)/2+cellWall-padding-cellInternal/2, 0] :
+    [cellX+padding-cellInternal/2, cellY+padding-cellInternal/2, 0] :
     [-(cellInternal+2*cellWall)*3.5,0];
 
 translate(translation)
@@ -62,8 +65,8 @@ pcb(
     screwDiameter=3.2,    // diameter of the screws to fix the PCB
     topHoles=[          // holes to put on the top of the box
          [
-            (34.29+52.975)/2,
-            (22.225+2.54)/2,
+            cellX,
+            cellY,
             "Insert",
             cellInternal+cellWall*2,
             cellInternal+cellWall*2,
@@ -74,10 +77,9 @@ pcb(
          [85.05, 12.61, 8]
       
     ],
-    rightHoles=[        // holes on the right of the box, over the PCB
-       [43.18, 2.25, 8.4, 4.5]
+    rightHolesB=[
+      [43.18, 2.25, 11.6, 9.5]    // usb connector
     ],
-    rightHolesB=[],
     showLabels=showLabels,    //should we show the labels
     labelsSize=10,      // size of the labels
     3d=3d,            // 3d rendering or just 2d ?,
