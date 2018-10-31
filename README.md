@@ -47,7 +47,7 @@ pcb(
     pcbThickness=1.6,   // thickness of the box
     topToTop=20,        // distance from the top of the PCB to the external top of the box
     bottomToBottom=40,  // distance from the bottom of the PCB to the external bottom of the box
-    extend=10,          // should top and bottom 'extend' in order to assemble the box without glue
+    extend=[10,10,0,0,0,0],          // should top and bottom 'extend' in order to assemble the box without glue
     screws=[            // position of holes to fix the PCB
         [5,5],
         [10,70],
