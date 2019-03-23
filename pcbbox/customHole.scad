@@ -12,6 +12,18 @@ module customHole(kind, parameters) {
             fingerWidth=parameters[3],
             color="Cyan"
         );
-        echo("DONE");
+    } else if (kind=="InsertFilled") {
+        echo("INSERT",parameters);
+        difference() {
+            side(
+                width=parameters[0],
+                height=parameters[1],
+                thickness=parameters[2],
+                fingerWidth=parameters[3],
+                color="Cyan"
+            );
+            square([parameters[0]-2*parameters[2], parameters[1]-2*parameters[2]],true);
+        }
+        
     }
 }
