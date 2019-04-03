@@ -3,6 +3,8 @@ $fn=40;
 use <../pcbbox/pcb.scad>;
 
 pcb(
+    3d=false,            // 3d rendering or just 2d ?,
+    active=[1,1,1,1,1,1],  // which faces should be rendered
     length=100,         // length of the PCB
     width=80,           // width of the PCB
     padding=1,          // space around the pcb (between pcb and box)
@@ -23,7 +25,14 @@ pcb(
     ],
     bottomHoles=[       // holes to put on the bottom of the box
         [40,40,10],     // array witlh 3 parameters = a circle [x,y,diameter]
-        [20,20,5,5]     // array with 4 parameters = a rectangle [x,y,width,depth]
+                        // x position of the center
+                        // y position of the center
+                        // diamseter of the circle
+        [20,40,5,10]     // array with 4 parameters = a rectangle [x,y,width,height]
+                        // x position of the center of the rectangle
+                        // y position of the center of the rectangle
+                        // width of the rectangle
+                        // height of the rectangle
     ],
     frontHoles=[        // holes in front of the box, over the PCB
         [20, 2.5, 5],
@@ -59,8 +68,6 @@ pcb(
     ],
     showLabels=true,    //should we show the labels
     labelsSize=10,      // size of the labels
-    3d=false,            // 3d rendering or just 2d ?,
-    active=[1,1,1,1,1,1],  // which faces should be rendered
     specialFingers=[undef,undef,undef,undef,undef,undef]
                         // for a normal box you should leave the default. However what is currently
                         // supported is to specify either on 'top' (first element of the array) or the

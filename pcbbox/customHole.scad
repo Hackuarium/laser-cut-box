@@ -2,9 +2,8 @@ use <side.scad>;
 
 module customHole(kind, parameters) {
     if (kind=="Custom") {
-
+        echo("Custom hole was not implemented");
     } else if (kind=="Insert") {
-        echo("INSERT",parameters);
         side(
             width=parameters[0],
             height=parameters[1],
@@ -13,7 +12,6 @@ module customHole(kind, parameters) {
             color="Cyan"
         );
     } else if (kind=="InsertFilled") {
-        echo("INSERT",parameters);
         difference() {
             side(
                 width=parameters[0],
