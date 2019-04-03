@@ -3,6 +3,16 @@ $fn=40;
 use <../pcbbox/pcb.scad>;
 
 pcb(
+    showLabels=true,       // should we show the labels
+    labelsSize=10,         // size of the labels
+    3d=true,               // 3d rendering or just 2d ?,
+    active=[1,1,1,1,1,1],  // which face should we use
+                           // "Top","Bottom","Left","Right","Front","Back"
+                           // for 3D printing you would for example separate Top for the rest
+                           // so you would generate one file with
+                           // active=[1,0,0,0,0,0] 
+                           // and one file with
+                           // active=[0,1,1,1,1,1] 
     length=100,         // length of the PCB
     width=80,           // width of the PCB
     padding=1,          // space around the pcb (between pcb and box)
@@ -48,11 +58,5 @@ pcb(
         [40,5,10,10]
     ],
     rightHolesB=[       // holes on the right of the box, under the PCB
-    ],
-    showLabels=false,    //should we show the labels
-    labelsSize=10,      // size of the labels
-    3d=false,            // 3d rendering or just 2d ?,
-    show="all"      // used for 3D printing. Possible values:
-                        // all (default), top, bottom, fulltop (5 faces), fullbottom (5 faces)
-                        // for 3D printing you could generate once with fulltop and then bottom
+    ]
 );

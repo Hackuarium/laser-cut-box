@@ -23,11 +23,13 @@ module pcb(
     labelsSize=10,
     extend=0,
     showLabels=false,
+    show="",
     3d=false,
     fingerWidth=undef,
     specialFingers=[],
     active=[1,1,1,1,1,1]
 ) {
+
     box(
         width=length+padding*2+thickness*2,
         depth=width+padding*2+thickness*2,

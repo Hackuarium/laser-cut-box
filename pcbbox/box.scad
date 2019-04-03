@@ -19,7 +19,6 @@ module box(
     ) {
     fingerWidth = (fingerWidth==undef) ? thickness*2 : fingerWidth;
     
-    
     assemble3d=[
         [
             [width/2, depth/2, height-thickness/2], // top
