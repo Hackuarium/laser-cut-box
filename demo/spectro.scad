@@ -11,7 +11,7 @@ bottomToBottom=20;
 padding=1;
 
 cellInternal=12.6;
-cellWall=3.06; // currently same as thickness of material of the full box
+cellWall=3.06;
 cellFingerWidth=4;
 cellX=(34.29+52.975)/2;
 cellY=(22.225+2.54)/2;
