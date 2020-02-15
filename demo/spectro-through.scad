@@ -2,7 +2,7 @@ $fn=40;
 
 use <../pcbbox/pcb.scad>;
 
-3d=true;
+3d=false;
 
 showLabels=false;
 
@@ -11,7 +11,7 @@ bottomToBottom=20;
 padding=1;
 
 cellInternal=12.6;
-cellWall=3.06; // currently same as thickness of material of the full box
+cellWall=3.15; // currently same as thickness of material of the full box
 cellFingerWidth=4;
 cellX=(34.29+52.975)/2;
 cellY=(22.225+2.54)/2;
@@ -32,13 +32,13 @@ pcb(
   padding=0,
   fingerWidth=cellFingerWidth,
   leftHolesB=[
-    [cellInternal/2, 2.5, 2.5, 5]
+    [cellInternal/2, 3.2, 2.5, 7]
   ],
   rightHolesB=[
-    [cellInternal/2, 2.5, 2.5, 5]
+    [cellInternal/2, 3.2, 2.5, 7]
   ],
   backHolesB=[
-    [cellInternal/2, 2.5, 5, 5]
+    [cellInternal/2, 3.2, 5, 7]
   ],
   frontHolesB=[
   ],
@@ -89,7 +89,7 @@ pcb(
     ],
     
     rightHolesB=[
-      [43.18, 2.25, 11.6, 9.5]    // usb connector
+      [43.18, 2.25+0.95, 11.6, 9.5+0.95*2]    // usb connector
     ],
     showLabels=showLabels,    //should we show the labels
     labelsSize=10,      // size of the labels
