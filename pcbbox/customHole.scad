@@ -4,7 +4,7 @@ module customHole(kind, parameters) {
     if (kind=="Custom") {
         echo("Custom hole was not implemented");
     } else if (kind=="Nema17") {
-        circle(d=11);
+        circle(d=15);
         translate([31/2,31/2]) circle(d=3.3);
         translate([-31/2,31/2]) circle(d=3.3);
         translate([31/2,-31/2]) circle(d=3.3);
