@@ -3,9 +3,9 @@ $fn=40; // defines the resolution for calculation by OpenSCAD
 use <../pcbbox/box.scad>;
 
 extend=10;
-thickness=5;
+thickness=5.2;
 
-height=80;
+height=75 + 2 * thickness;
 
 heatingPlateSize=214;
 heatingPlateGap=2 + thickness;
@@ -32,14 +32,14 @@ pcbBackHoleX=pcbHShift+pcbWidth/2+pcbScrewDiameter;
 pcbBackHoleY=pcbBackHoleHeight/2+3;
 
 box(
-    3d=true, // true: render as 3D, false: render as 2D (for laser cutting)
+    3d=false, // true: render as 3D, false: render as 2D (for laser cutting)
     width=externalSize, // width of the box
     depth=externalSize, // depth of the box
     height=height, // height of the box
     thickness=thickness, // thickness of the wood
     fingerWidth=22, // if undefine 2 times the thickness
     labelsSize=10, 
-    showLabels=true,
+    showLabels=false,
     extends=[extend,extend,0,0,0,0],
     labels=["Top","Bottom","Left","Right","Front","Back"],
     space=2, // space between the parts when rendering as 2D
@@ -56,11 +56,11 @@ box(
              [internalSize-screwDistance,internalSize-screwDistance,screwDiameter],
              [screwDistance,internalSize-screwDistance,screwDiameter],
              // Loading cells
-            [30, 60, "LoadingCell", 90 ],
-            [internalSize-30, 60, "LoadingCell", 90 ],
-            [internalSize-70, internalSize-30, "LoadingCell", 0 ],
+            [20, 60, "LoadingCell", 90 ],
+            [internalSize-20, 60, "LoadingCell", 90 ],
+            [internalSize-70, internalSize-20, "LoadingCell", 0 ],
              // stepper
-            [internalSize/2, internalSize/2, "Nema23" ],
+            [internalSize/2, internalSize/2, "Nema17" ],
             // hole for the heating power
             [internalSize/2,15,10],
         ], // top
@@ -78,13 +78,13 @@ box(
         ], // bottom
         [
             // peristaltic pump
-            [40, internalHeight/2, "Peristaltic" ],
+            [40, internalHeight/2, "Peristaltic", 45 ],
         ], // left
         [
              // peristaltic pump
-            [40, internalHeight/2, "Peristaltic" ],
+            [40, internalHeight/2, "Peristaltic", -45 ],
             // fan
-            [internalSize-35, internalHeight/2, "Fan50" ],
+            [internalSize-50, internalHeight/2, "Fan50" ],
             
         ], // right
         [], // front
