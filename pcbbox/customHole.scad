@@ -96,7 +96,7 @@ module customHole(kind, parameters) {
                 fingerWidth=parameters[3],
                 color="Cyan"
             );
-            square([parameters[0]-2*parameters[2], parameters[1]-2*parameters[2]],true);
+            square([parameters[0]-2*parameters[2]+0.001, parameters[1]-2*parameters[2]+0.001],true);
         }
         
     }
