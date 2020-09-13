@@ -31,6 +31,7 @@ pcbBackHoleHeight=16;
 pcbBackHoleX=pcbHShift+pcbWidth/2+pcbScrewDiameter;
 pcbBackHoleY=pcbBackHoleHeight/2+3;
 
+translate([heatingPlateSize*2+extend*2+20,0])
 box(
     3d=false, // true: render as 3D, false: render as 2D (for laser cutting)
     width=externalSize, // width of the box
@@ -62,7 +63,7 @@ box(
              // stepper
             [internalSize/2, internalSize/2, "Nema17" ],
             // hole for the heating power
-            [internalSize/2,15,10],
+            [internalSize/2,15,30,15],
         ], // top
         [
             // the screws
@@ -93,5 +94,35 @@ box(
             [internalSize-pcbBackHoleX,internalHeight-pcbBackHoleY,pcbBackHoleWidth,pcbBackHoleHeight],
 
         ] // back
+    ]
+);
+
+box(
+    3d=false, // true: render as 3D, false: render as 2D (for laser cutting)
+    width=heatingPlateSize, // width of the box
+    depth=heatingPlateSize, // depth of the box
+    height=40, // height of the box
+    thickness=thickness, // thickness of the wood
+    fingerWidth=8, // if undefine 2 times the thickness
+    labelsSize=10, 
+    showLabels=false,
+    extends=[extend,extend,0,0,0,0],
+    labels=["Top","Bottom","Left","Right","Front","Back"],
+    space=2, // space between the parts when rendering as 2D
+    active=[0,1,1,1,1,1],  // side that should be displayed
+    specialFingers=[2,1,1,1,1,1],
+                        // for a normal box you should leave the default. However what is currently
+                        // supported is to specify either on 'top' (first element of the array) or the
+                        // 'bottom' (second element in the array) that is is fully female (2) or male (3).
+    holes=[ // relative to the inside of the box
+        [
+        ], // top
+        [
+            [heatingPlateSize/2-thickness,heatingPlateSize/2-thickness,heatingPlateSize-40,heatingPlateSize-40]
+        ], // bottom
+        [], // left
+        [], // right
+        [], // front
+        [] // back
     ]
 );
