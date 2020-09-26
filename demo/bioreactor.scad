@@ -1,5 +1,7 @@
 $fn=40; // defines the resolution for calculation by OpenSCAD
 
+3d=false;
+
 use <../pcbbox/box.scad>;
 
 extend=10;
@@ -33,7 +35,7 @@ pcbBackHoleY=pcbBackHoleHeight/2+3;
 
 translate([heatingPlateSize*2+extend*2+20,0])
 box(
-    3d=false, // true: render as 3D, false: render as 2D (for laser cutting)
+    3d=3d, // true: render as 3D, false: render as 2D (for laser cutting)
     width=externalSize, // width of the box
     depth=externalSize, // depth of the box
     height=height, // height of the box
@@ -64,6 +66,8 @@ box(
             [internalSize/2, internalSize/2, "Nema17" ],
             // hole for the heating power
             [internalSize/2,15,30,15],
+            // holes for loading cell PCB
+            [internalSize/2, internalSize-45, "SquareHoles" ],
         ], // top
         [
             // the screws
@@ -97,13 +101,19 @@ box(
     ]
 );
 
+
+// translate([extend,extend,20]) square([heatingPlateSize,heatingPlateSize]);
+
+//translate([heatingPlateSize-10-thickness-2,-10-thickness-2,height+30+20])
+//rotate([0,180,0])
+
 box(
-    3d=false, // true: render as 3D, false: render as 2D (for laser cutting)
+    3d=3d, // true: render as 3D, false: render as 2D (for laser cutting)
     width=heatingPlateSize, // width of the box
     depth=heatingPlateSize, // depth of the box
-    height=40, // height of the box
+    height=30, // height of the box
     thickness=thickness, // thickness of the wood
-    fingerWidth=8, // if undefine 2 times the thickness
+    fingerWidth=5, // if undefine 2 times the thickness
     labelsSize=10, 
     showLabels=false,
     extends=[extend,extend,0,0,0,0],
@@ -118,7 +128,10 @@ box(
         [
         ], // top
         [
-            [heatingPlateSize/2-thickness,heatingPlateSize/2-thickness,heatingPlateSize-40,heatingPlateSize-40]
+          [heatingPlateSize/2-thickness,heatingPlateSize/2-thickness,heatingPlateSize-40,heatingPlateSize-40],
+         //  [heatingPlateSize/2-thickness,heatingPlateSize/2-thickness,"Grid",heatingPlateSize-30,heatingPlateSize-30,10,10]
+        // hole for the heating power
+           [heatingPlateSize/2-thickness,12,60,15],
         ], // bottom
         [], // left
         [], // right

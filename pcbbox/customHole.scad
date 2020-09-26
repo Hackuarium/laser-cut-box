@@ -15,6 +15,35 @@ module customHole(kind, parameters) {
         translate([-47.14/2,47.14/2]) circle(d=3.3);
         translate([47.14/2,-47.14/2]) circle(d=3.3);
         translate([-47.14/2,-47.14/2]) circle(d=3.3);
+    } else if (kind=="SquareHoles") {
+        width=25.4;
+        translate([width/2,width/2]) circle(d=3.3);
+        translate([-width/2,width/2]) circle(d=3.3);
+        translate([width/2,-width/2]) circle(d=3.3);
+        translate([-width/2,-width/2]) circle(d=3.3);
+    } else if (kind=="Grid") {
+        width=parameters[0];
+        height=parameters[1];
+        number=parameters[2];
+        wall=parameters[3]; // thickness to keep
+
+        removeWidth=(width-(number-1)*wall)/number;
+        removeHeight=(width-(number-1)*wall)/number;
+
+        difference() {
+            square([width,height], center=true);
+            difference() {
+                square([width,height], center=true);
+                translate([-width/2, -height/2])
+                for (i = [0:number]) {
+                        translate([i * (removeWidth + wall), 0, 0])
+                        for (i = [0:number]) {
+                            translate([0, i * (removeWidth + wall), 0])
+                            square([removeWidth,removeHeight]);
+                    }
+                }
+            }
+        }
     } else if (kind=="Fan60") {
         diameter=7;
         distance=10;
