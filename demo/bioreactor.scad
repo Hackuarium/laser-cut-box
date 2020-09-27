@@ -59,9 +59,9 @@ box(
              [internalSize-screwDistance,internalSize-screwDistance,screwDiameter],
              [screwDistance,internalSize-screwDistance,screwDiameter],
              // Loading cells
-            [20, 60, "LoadingCell", 90 ],
-            [internalSize-20, 60, "LoadingCell", 90 ],
-            [internalSize-70, internalSize-20, "LoadingCell", 0 ],
+            [20, 60, "LoadingCell", 90, -1 ],
+            [internalSize-20, 60, "LoadingCell", 90, 1 ],
+            [internalSize-70, internalSize-20, "LoadingCell", 0, -1 ],
              // stepper
             [internalSize/2, internalSize/2, "Nema17" ],
             // hole for the heating power

@@ -98,6 +98,7 @@ module customHole(kind, parameters) {
         }
     } else if (kind=="LoadingCell") {
         rotation=parameters[0];
+        cableHoleSide=parameters[1];
         width=16;
         total=83;
         hole=55;
@@ -106,6 +107,7 @@ module customHole(kind, parameters) {
                 square([hole,width]);
                 translate([hole+8,width/2]) circle(d=5.4);
                 translate([hole+23,width/2]) circle(d=5.4);
+                translate([hole+23,width/2+cableHoleSide*15]) circle(d=4);
             }
         }
     } else if (kind=="Insert") {
