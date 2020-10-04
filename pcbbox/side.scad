@@ -29,7 +29,7 @@ module side(
             difference() {
                 // we create the side
                     translate([-extend, -extend])
-                        square([width+extend*2, height+extend*2]);
+                        square([width+extend*2-0.0001, height+extend*2-0.0001]);
 
                     translate([width, thickness, 0]) rotate([0,0,180])
                         anyFingers(width, fingerWidth, thickness, male[0], fingers[0]);
