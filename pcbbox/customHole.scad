@@ -67,7 +67,7 @@ module customHole(kind, parameters) {
         translate([25,-25]) circle(d=3.3);
         translate([-25,-25]) circle(d=3.3);
     } else if (kind=="Fan50") {
-        diameter=7;
+        diameter=7.5;
         distance=10;
 
         difference() {
@@ -78,7 +78,7 @@ module customHole(kind, parameters) {
                         translate([i * distance, -20, 0])
                         for (i = [0:10]) {
                             translate([-20, i * distance, 0])
-                            circle(d=diameter);
+                            square([diameter,diameter],center=true);
                     }
                 }
             }
@@ -104,7 +104,7 @@ module customHole(kind, parameters) {
         hole=55;
         rotate(a=rotation) {
             translate([-total/2,-width/2]) {
-                square([hole,width]);
+                // square([hole,width]);
                 translate([hole+8,width/2]) circle(d=5.4);
                 translate([hole+23,width/2]) circle(d=5.4);
                 translate([hole+23,width/2+cableHoleSide*15]) circle(d=4);
