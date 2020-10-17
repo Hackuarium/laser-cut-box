@@ -31,7 +31,7 @@ pcbScrewDiameter=3.3;
 pcbBackHoleWidth=pcbHHoles-pcbScrewDiameter*2;
 pcbBackHoleHeight=16;
 pcbBackHoleX=pcbHShift+pcbWidth/2+pcbScrewDiameter;
-pcbBackHoleY=pcbBackHoleHeight/2+3;
+pcbBackHoleY=pcbBackHoleHeight/2+9;
 
 translate([heatingPlateSize*2+extend*2+20,0])
 box(
@@ -59,9 +59,10 @@ box(
              [internalSize-screwDistance,internalSize-screwDistance,screwDiameter],
              [screwDistance,internalSize-screwDistance,screwDiameter],
              // Loading cells
-            [20, 60, "LoadingCell", 90, -1 ],
-            [internalSize-20, 60, "LoadingCell", 90, 1 ],
-            [110, internalSize-20, "LoadingCell", 0, -1 ],
+            [20, internalSize/2, "LoadingCell", 90 ],
+            [20, internalSize/2, "LoadingCell", -90 ],
+            [internalSize-20, internalSize/2, "LoadingCell", 90 ],
+            [internalSize-20, internalSize/2, "LoadingCell", -90 ],
              // stepper
             [internalSize/2, internalSize/2, "Nema17" ],
             // hole for the heating power
@@ -83,11 +84,11 @@ box(
         ], // bottom
         [
             // peristaltic pump
-            [40, internalHeight/2, "Peristaltic", 45 ],
+            [40, 30, "Peristaltic", 60 ],
         ], // left
         [
              // peristaltic pump
-            [40, internalHeight/2, "Peristaltic", -45 ],
+            [40, 30, "Peristaltic", -60 ],
             // fan
             [internalSize-50, internalHeight/2, "Fan50" ],
             
