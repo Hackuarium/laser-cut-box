@@ -88,7 +88,7 @@ box(
         ], // left
         [
              // peristaltic pump
-            [40, 30, "Peristaltic", -60 ],
+            [40, 30, "Peristaltic", 60 ],
             // fan
             [internalSize-50, internalHeight/2, "Fan50" ],
             
