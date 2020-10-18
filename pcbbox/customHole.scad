@@ -106,7 +106,7 @@ module customHole(kind, parameters) {
                 // square([hole,width]);
                 translate([hole+8,width/2]) circle(d=5.4);
                 translate([hole+23,width/2]) circle(d=5.4);
-                translate([hole+23,width/2+10]) circle(d=4);
+                translate([hole+8,width/2+10]) circle(d=4);
             }
         }
     } else if (kind=="Insert") {
