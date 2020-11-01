@@ -68,7 +68,9 @@ box(
             // hole for the heating power
             [internalSize/2,15,30,15],
             // holes for loading cell PCB
-            [internalSize/2, internalSize-45, "SquareHoles" ],
+            [internalSize/2, internalSize/5*4, "RectangularHoles",29.21,18.41,3.3 ],
+            // some air circulation
+          
         ], // top
         [
             // the screws
@@ -84,13 +86,14 @@ box(
         ], // bottom
         [
             // peristaltic pump
-            [40, 30, "Peristaltic", 60 ],
-        ], // left
-        [
-             // peristaltic pump
-            [40, 30, "Peristaltic", 60 ],
+            [40, 30, "Peristaltic", -60 ],
             // fan
             [internalSize-50, internalHeight/2, "Fan50" ],
+            
+        ], // left
+        [
+            // peristaltic pump
+            [40, 30, "Peristaltic", 60 ],
             
         ], // right
         [], // front
