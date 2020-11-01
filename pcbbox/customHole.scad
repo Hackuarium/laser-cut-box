@@ -15,12 +15,14 @@ module customHole(kind, parameters) {
         translate([-47.14/2,47.14/2]) circle(d=3.3);
         translate([47.14/2,-47.14/2]) circle(d=3.3);
         translate([-47.14/2,-47.14/2]) circle(d=3.3);
-    } else if (kind=="SquareHoles") {
-        width=25.4;
-        translate([width/2,width/2]) circle(d=3.3);
-        translate([-width/2,width/2]) circle(d=3.3);
-        translate([width/2,-width/2]) circle(d=3.3);
-        translate([-width/2,-width/2]) circle(d=3.3);
+    } else if (kind=="RectangularHoles") {
+        width=parameters[0];
+        height=parameters[1];
+        diamter=parameters[2];
+        translate([width/2,height/2]) circle(d=diameter);
+        translate([-width/2,height/2]) circle(d=diameter);
+        translate([width/2,-height/2]) circle(d=diameter);
+        translate([-width/2,-height/2]) circle(d=diameter);
     } else if (kind=="Grid") {
         width=parameters[0];
         height=parameters[1];
