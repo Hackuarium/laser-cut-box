@@ -69,20 +69,24 @@ module customHole(kind, parameters) {
         translate([25,-25]) circle(d=3.3);
         translate([-25,-25]) circle(d=3.3);
     } else if (kind=="Fan50") {
-        diameter=7.5;
-        distance=10;
+        diameter=10;
+	gap=2;
+	deltaV=(sin(60)*diameter+gap)/2;
+	deltaH=cos(30)*deltaV*4;
 
         difference() {
             circle(d=45);
             difference() {
                 circle(d=46);
-                for (i = [0:10]) {
-                        translate([i * distance, -20, 0])
-                        for (i = [0:10]) {
-                            translate([-20, i * distance, 0])
-                            square([diameter,diameter],center=true);
-                    }
-                }
+		translate([-deltaH*3,-21.5,0]) {
+             	   for (i = [0:10]) {
+                            translate([0, i * deltaV, 0])
+                        for (j = [0:10]) {
+                        	translate([(i%2) * deltaH / 2 + deltaH * j, 0, 0])
+			    circle(d=diameter,$fn=6);
+   	                }
+   	           }
+	 	}
             }
         }
        
