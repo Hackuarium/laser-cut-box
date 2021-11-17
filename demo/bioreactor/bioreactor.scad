@@ -2,7 +2,7 @@ $fn=40; // defines the resolution for calculation by OpenSCAD
 
 3d=false;
 
-use <../pcbbox/box.scad>;
+use <../../pcbbox/box.scad>;
 
 extend=10;
 thickness=5.2;

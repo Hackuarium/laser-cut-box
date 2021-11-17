@@ -1,6 +1,6 @@
 $fn=40; // defines the resolution for calculation by OpenSCAD
 
-use <../pcbbox/box.scad>;
+use <../../pcbbox/box.scad>;
 
 box(
     3d=false, // true: render as 3D, false: render as 2D (for laser cutting)
