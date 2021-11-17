@@ -94,6 +94,34 @@ module customHole(kind, parameters) {
         translate([-20,20]) circle(d=3.3);
         translate([20,-20]) circle(d=3.3);
         translate([-20,-20]) circle(d=3.3);
+    } else if (kind=="hexagon") {
+	diameter=10;
+        width=80;
+        height=60;
+	gap=2;
+	deltaV=(sin(60)*diameter+gap)/2;
+	deltaH=cos(30)*deltaV*4;
+
+        difference() {
+	    square([width,height], center=true);
+            difference() {
+	    	square([width,height], center=true);
+		translate([-deltaH*3,-21.5,0]) {
+             	   for (i = [0:10]) {
+                            translate([0, i * deltaV, 0])
+                        for (j = [0:10]) {
+                        	translate([(i%2) * deltaH / 2 + deltaH * j, 0, 0])
+			    circle(d=diameter,$fn=6);
+   	                }
+   	           }
+	 	}
+            }
+        }
+       
+        translate([20,20]) circle(d=3.3);
+        translate([-20,20]) circle(d=3.3);
+        translate([20,-20]) circle(d=3.3);
+        translate([-20,-20]) circle(d=3.3);
     } else if (kind=="Peristaltic") {
         rotation=parameters[0];
         interHole=49;
