@@ -12,6 +12,7 @@ module side(
     labelsSize=10,
     showLabels=false,
     holes=[],
+    holeShifts=[0,0,0,0],
     3d=false,
     extend=0,
     textRotation=0,
@@ -27,20 +28,20 @@ module side(
     translate([-width/2, -height/2])
        conditionalExtrude(thickness=thickness, 3d=3d) {
             difference() {
-                // we create the side
+                    // we create the side
                     translate([-extend, -extend])
                         square([width+extend*2-0.0001, height+extend*2-0.0001]);
 
-                    translate([width, thickness, 0]) rotate([0,0,180])
+                    translate([width, thickness+holeShifts[0], 0]) rotate([0,0,180])
                         anyFingers(width, fingerWidth, thickness, male[0], fingers[0]);
                     
-                    translate([thickness, 0, 0]) rotate([0,0,90])
+                    translate([thickness+holeShifts[1], 0, 0]) rotate([0,0,90])
                         anyFingers(height, fingerWidth, thickness, male[1], fingers[1]);
                     
-                    color("red") translate([0, height-thickness, 0]) rotate([0,0,0])
+                    color("red") translate([0, height-thickness-holeShifts[2], 0]) rotate([0,0,0])
                         anyFingers(width, fingerWidth, thickness, male[2], fingers[2]);
                     
-                    translate([width-thickness, height, 0]) rotate([0,0,270])
+                    translate([width-thickness-+holeShifts[3], height, 0]) rotate([0,0,270])
                         anyFingers(height, fingerWidth, thickness, male[3], fingers[3]);
                     
                     for (hole = holes) {

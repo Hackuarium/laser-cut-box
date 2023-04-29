@@ -2,9 +2,9 @@ $fn=40;
 
 use <../../pcbbox/pcb.scad>;
 
-3d=true;
+3d=false;
 
-showLabels=false;
+showLabels=true;
 
 topToTop=12;
 bottomToBottom=20;

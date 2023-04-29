@@ -3,7 +3,7 @@ $fn=40; // defines the resolution for calculation by OpenSCAD
 use <../../pcbbox/box.scad>;
 
 box(
-    3d=false, // true: render as 3D, false: render as 2D (for laser cutting)
+    3d=true, // true: render as 3D, false: render as 2D (for laser cutting)
     width=100, // width of the box
     height=50, // height of the box
     depth=80, // depth of the box
@@ -14,6 +14,8 @@ box(
     labels=["Top","Bottom","Left","Right","Front","Back"],
     space=2, // space between the parts when rendering as 2D
     active=[1,1,1,1,1,1],  // side that should be displayed
+    extends=[0,0,0,0,0,0], 
+    faceInsets=[0,0,0,0,0,10], 
     specialFingers=[1,1,1,1,1,1],
                         // for a normal box you should leave the default. However what is currently
                         // supported is to specify either on 'top' (first element of the array) or the

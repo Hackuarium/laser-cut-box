@@ -15,32 +15,33 @@ module box(
     3d=true,
     space=2,
     extends=[0,0,0,0,0,0],
+    faceInsets=[0,0,0,0,0,0],
     holes=[[],[],[],[],[],[]]
     ) {
     fingerWidth = (fingerWidth==undef) ? thickness*2 : fingerWidth;
     
     assemble3d=[
         [
-            [width/2, depth/2, height-thickness/2], // top
+            [width/2, depth/2, height-thickness/2-faceInsets[0]], // top
             [0,0,0]
         ],[
-            [width/2, depth/2, thickness/2], // bottom
+            [width/2, depth/2, thickness/2+faceInsets[1]], // bottom
             [0,180,0]
         ],
         [
-            [thickness/2, depth/2, height/2], // left
+            [thickness/2+faceInsets[2], depth/2, height/2], // left
             [270,0,90]
         ],
         [
-            [width-thickness/2, depth/2, height/2], // right
+            [width-thickness/2-faceInsets[3], depth/2, height/2], // right
             [90,0,90]
         ],
         [
-            [width/2, thickness/2, height/2], // front
+            [width/2, thickness/2+faceInsets[4], height/2], // front
             [90,0,0]
         ],
         [
-            [width/2, depth-thickness/2, height/2], // back
+            [width/2, depth-thickness/2-faceInsets[5], height/2], // back
             [270,0,0]
         ]
     ];
@@ -102,6 +103,7 @@ module box(
                 width, depth, thickness, fingerWidth,
                 name="top", sideColor="blue", labelsSize=labelsSize, showLabels=showLabels,
                 holes=holes[0], 3d=3d, extend=extends[0],
+                holeShifts=[faceInsets[4],faceInsets[2],faceInsets[5],faceInsets[3]],
                 male=[
                     specialFingers[0] ? specialFingers[0] : 1,
                     specialFingers[0] ? specialFingers[0] : 1,
@@ -118,6 +120,7 @@ module box(
                 width, depth, thickness, fingerWidth,
                 name="bottom", sideColor="green", labelsSize=labelsSize, showLabels=showLabels,
                 holes=holes[1], 3d=3d, extend=extends[1],
+                holeShifts=[faceInsets[4],faceInsets[3],faceInsets[5],faceInsets[2]],
                 male=[
                     specialFingers[1] ? specialFingers[1] : 1,
                     specialFingers[1] ? specialFingers[1] : 1,
@@ -134,6 +137,7 @@ module box(
                 depth, height, thickness, fingerWidth,
                 name="left", sideColor="magenta", labelsSize=labelsSize, showLabels=showLabels,
                 holes=holes[2], 3d=3d, extend=extends[2], textRotation=180,
+                holeShifts=[faceInsets[0],faceInsets[4],faceInsets[1],faceInsets[5]],
                 male=[
                     specialFingers[0] ? invertSpecialFinger(specialFingers[0]) : 0,
                     0,
@@ -150,6 +154,7 @@ module box(
                 depth, height, thickness, fingerWidth,
                 name="right", sideColor="cyan", labelsSize=labelsSize, showLabels=showLabels,
                 holes=holes[3], 3d=3d, extend=extends[3],
+                holeShifts=[faceInsets[1],faceInsets[4],faceInsets[0],faceInsets[5]],
                 male=[
                     specialFingers[1] ? invertSpecialFinger(specialFingers[1]) : 0,
                     0,
@@ -166,6 +171,7 @@ module box(
                 width, height, thickness, fingerWidth,
                 name="front", sideColor="orange", labelsSize=labelsSize, showLabels=showLabels,
                 holes=holes[4], 3d=3d, extend=extends[4],
+                holeShifts=[faceInsets[1],faceInsets[2],faceInsets[0],faceInsets[3]],
                 male=[
                     specialFingers[1] ? invertSpecialFinger(specialFingers[1]) : 0,
                     1,
@@ -182,6 +188,7 @@ module box(
                 width, height, thickness, fingerWidth,  
                 name="back", sideColor="indigo", labelsSize=labelsSize, showLabels=showLabels,
                 holes=holes[5], 3d=3d, extend=extends[5], textRotation=180,
+                holeShifts=[faceInsets[0],faceInsets[2],faceInsets[1],faceInsets[3]],
                 male=[
                     specialFingers[0] ? invertSpecialFinger(specialFingers[0]) : 0,
                     1,
